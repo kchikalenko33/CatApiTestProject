@@ -1,16 +1,16 @@
 package testData;
 
 public enum Color {
- /*   BLACK,
-    WHITE,
-    GRAY,
-    ORANGE,
-    BROWN,
-    CREAM, */
-    TABBY("TABBY");
-    /*CALICO,
-    SPOTTED,
-    MIXED*/
+    BLACK("BLACK"),
+    WHITE("WHITE"),
+    GRAY("GRAY"),
+    ORANGE("ORANGE"),
+    BROWN("BROWN"),
+    CREAM("CREAM"),
+    TABBY("TABBY"),
+    CALICO("CALICO"),
+    SPOTTED("SPOTTED"),
+    MIXED("MIXED");
 
     private final String color;
 
