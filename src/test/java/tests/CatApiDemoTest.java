@@ -10,7 +10,6 @@ import testData.Color;
 
 import java.time.LocalDate;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
 

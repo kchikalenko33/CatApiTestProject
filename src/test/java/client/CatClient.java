@@ -26,4 +26,23 @@ public class CatClient {
                 .when()
                 .post(CatEndpoint.CREATE_CAT.getPath());
     }
+
+    public Response getCatById(Integer id) {
+        return given()
+                .spec(rq)
+                .pathParam("id", id)
+                .when()
+                .log().all()
+                .get(CatEndpoint.GET_CAT.getPath());
+
+    }
+
+    public Response getCatByRow (String id) {
+        return given()
+                .spec(rq)
+                .pathParam("id", id)
+                .when()
+                .log().all()
+                .get(CatEndpoint.GET_CAT.getPath());
+    }
 }
