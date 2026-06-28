@@ -19,22 +19,45 @@ public class CatClient {
                 .get(CatEndpoint.GET_ALL_CATS.getPath());
     }
 
+    public Response getCatListBySize(String size) {
+        return given()
+                .spec(rq)
+                .queryParam(size)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
+    public Response getCatListBySort(String sort) {
+        return given()
+                .spec(rq)
+                .queryParam(sort)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
+    public Response getCatListByPage(String page) {
+        return given()
+                .spec(rq)
+                .queryParam(page)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+    public Response getCatList(String size, String sort, String page) {
+        return given()
+                .spec(rq)
+                .queryParam(size)
+                .queryParam(sort)
+                .queryParam(page)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
     public Response createCat(CatCreateRequestDto cat) {
         return given()
                 .spec(rq)
                 .body(cat)
                 .when()
                 .post(CatEndpoint.CREATE_CAT.getPath());
-    }
-
-    public Response getCatById(Integer id) {
-        return given()
-                .spec(rq)
-                .pathParam("id", id)
-                .when()
-                .log().all()
-                .get(CatEndpoint.GET_CAT.getPath());
-
     }
 
     public Response getCatByRow (String id) {
@@ -45,4 +68,6 @@ public class CatClient {
                 .log().all()
                 .get(CatEndpoint.GET_CAT.getPath());
     }
+
+
 }

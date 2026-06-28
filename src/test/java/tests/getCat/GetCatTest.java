@@ -1,7 +1,5 @@
 package tests.getCat;
 
-import client.CatClient;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import models.CatCreateRequestDto;
 import models.CatCreateResponseDto;
@@ -12,12 +10,10 @@ import steps.CrudCatStep;
 import testData.CatGenerator;
 import testData.Color;
 
-import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class GetCatTest {
-    private CatClient catClient = new CatClient();
     private CrudCatStep step = new CrudCatStep();
 
     @Test
@@ -32,26 +28,22 @@ public class GetCatTest {
     }
 
     @Test
-    void getCatById_shouldReturn404_whenCatDoesNotExistTest() {
-        catClient.getCatById(1000)
-                .then()
-                .log().all()
-                .statusCode(404)
-                .contentType(ContentType.JSON)
-                .body("error", notNullValue())
-                .body("message", containsString(String.valueOf(1000)));
+    void getCatByIdNotFoundTest() {
+        Response response = step.getCatById("1000");
+
+        assertEquals(404, response.statusCode());
+        assertNotNull(response.path("error"));
+        assertEquals("Cat with id 1000 not found", response.path("message"));
     }
 
     @ParameterizedTest
     @CsvSource({"0.1", "abc", "-7", "0007", "99999999999999999999"})
     void getCatByIdWithNoneIdTest(String id) {
-        catClient.getCatByRow(id)
-                .then()
-                .log().all()
-                .statusCode(400)
-                .contentType(ContentType.JSON)
-                .body("error", equalTo("Bad Request"))
-                .body("message", equalTo("Parameter 'id' should be of type 'Long' but received: '%s'".formatted(id)));
+        Response response = step.getCatById(id);
+
+        assertEquals(400, response.statusCode());
+        assertEquals("Bad Request", response.path("error"));
+        assertEquals("Parameter 'id' should be of type 'Long' but received: '%s'".formatted(id), response.path("message"));
     }
 
     @Test
