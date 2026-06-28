@@ -10,11 +10,44 @@ import static io.restassured.RestAssured.given;
 
 public class CatClient {
 
-   private RequestSpecification rq = BaseSpec.baseSpecReq();
+   private final RequestSpecification rq = BaseSpec.baseSpecReq();
 
     public Response getCatList() {
         return given()
                 .spec(rq)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
+    public Response getCatListBySize(String size) {
+        return given()
+                .spec(rq)
+                .queryParam(size)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
+    public Response getCatListBySort(String sort) {
+        return given()
+                .spec(rq)
+                .queryParam(sort)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+
+    public Response getCatListByPage(String page) {
+        return given()
+                .spec(rq)
+                .queryParam(page)
+                .when()
+                .get(CatEndpoint.GET_ALL_CATS.getPath());
+    }
+    public Response getCatList(String size, String sort, String page) {
+        return given()
+                .spec(rq)
+                .queryParam(size)
+                .queryParam(sort)
+                .queryParam(page)
                 .when()
                 .get(CatEndpoint.GET_ALL_CATS.getPath());
     }
@@ -27,16 +60,6 @@ public class CatClient {
                 .post(CatEndpoint.CREATE_CAT.getPath());
     }
 
-    public Response getCatById(Integer id) {
-        return given()
-                .spec(rq)
-                .pathParam("id", id)
-                .when()
-                .log().all()
-                .get(CatEndpoint.GET_CAT.getPath());
-
-    }
-
     public Response getCatByRow (String id) {
         return given()
                 .spec(rq)
@@ -45,4 +68,6 @@ public class CatClient {
                 .log().all()
                 .get(CatEndpoint.GET_CAT.getPath());
     }
+
+
 }

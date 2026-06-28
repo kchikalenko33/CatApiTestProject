@@ -3,15 +3,16 @@ package testData;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Breed {
-    MAINE_COON("MAINE COON"),
-    BRITISH_SHORTHAIR("BRITISH_SHORTHAIR"),
-    SCOTTISH_FOLD("SCOTTISH_FOLD"),
-    SIAMESE("SIAMESE"),
-    PERSIAN("PERSIAN"),
-    SPHYNX("SPHYNX"),
-    BENGAL("BENGAL"),
-    RAGDOLL("RAGDOLL"),
-    MIXED("MIXED");
+    MAINE_COON("Maine coon"),
+    BRITISH_SHORTHAIR("British shorthair"),
+    SCOTTISH_FOLD("Scottish fold"),
+    SIAMESE("Siamese"),
+    PERSIAN("Persian"),
+    SPHYNX("Sphynx"),
+    BENGAL("Bengal"),
+    RAGDOLL("Ragdoll"),
+    MIXED("Mixed");
+
 
     private final String breed;
 

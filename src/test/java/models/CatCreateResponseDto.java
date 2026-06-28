@@ -1,7 +1,6 @@
 package models;
 
 import lombok.*;
-import testData.Breed;
 import testData.Color;
 
 import java.time.LocalDate;
@@ -17,7 +16,7 @@ public class CatCreateResponseDto {
     private String name;
     private Integer age;
     private Color color;
-    private Breed breed;
+    private String breed;
     private Double weight;
     private Boolean vaccinated;
     private LocalDate birthDate;
