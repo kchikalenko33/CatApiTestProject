@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class CatClient {
 
-   private RequestSpecification rq = BaseSpec.baseSpecReq();
+   private final RequestSpecification rq = BaseSpec.baseSpecReq();
 
     public Response getCatList() {
         return given()

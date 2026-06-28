@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class GetCatTest {
-    private CrudCatStep step = new CrudCatStep();
+    private final CrudCatStep step = new CrudCatStep();
 
     @Test
     void getCatByIdCat() {

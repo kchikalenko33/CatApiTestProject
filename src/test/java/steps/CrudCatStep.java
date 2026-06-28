@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import models.CatCreateRequestDto;
 
 public class CrudCatStep {
-    private CatClient catClient = new CatClient();
+    private final CatClient catClient = new CatClient();
 
     @Step("Создание кота")
     public Response createCat(CatCreateRequestDto cat) {

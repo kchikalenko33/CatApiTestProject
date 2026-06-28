@@ -1,6 +1,5 @@
 package tests.catList;
 
-import client.CatClient;
 import io.restassured.response.Response;
 import models.CatCreateResponseDto;
 import models.CatListResponseDto;
