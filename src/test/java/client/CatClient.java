@@ -6,6 +6,9 @@ import io.restassured.specification.RequestSpecification;
 import models.CatCreateRequestDto;
 import specs.BaseSpec;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class CatClient {
@@ -69,5 +72,12 @@ public class CatClient {
                 .get(CatEndpoint.GET_CAT.getPath());
     }
 
+    public Response deleteCats(List<Integer> ids) {
+        return given()
+                .spec(rq)
+                .body(Map.of("ids", ids))
+                .when()
+                .delete(CatEndpoint.DELETE_BULK.getPath());
 
+    }
 }

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @ToString
 @Builder
+@EqualsAndHashCode
 public class CatCreateResponseDto {
     private Integer id;
     private String name;

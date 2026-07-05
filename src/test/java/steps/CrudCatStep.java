@@ -5,6 +5,10 @@ import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import models.CatCreateRequestDto;
+import models.CatListResponseDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CrudCatStep {
     private final CatClient catClient = new CatClient();
@@ -68,5 +72,24 @@ public class CrudCatStep {
                 .log().all()
                 .contentType(ContentType.JSON)
                 .extract().response();
+    }
+
+    public Response deleteAllCats() {
+        if (getCatIds().isEmpty()) {
+            throw new IllegalArgumentException("Список id котов на удаление - пуст!");
+        }
+        return catClient.deleteCats(getCatIds())
+                .then()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .extract().response();
+    }
+
+    public List<Integer> getCatIds() {
+        List<Integer> ids = new ArrayList<>();
+        String totalSize = String.valueOf(Integer.parseInt(getCatList().as(CatListResponseDto.class)
+                .getTotalElements().toString()));
+        getCatListBySize(totalSize).as(CatListResponseDto.class).getContent().forEach(i -> ids.add(i.getId()));
+        return ids;
     }
 }
