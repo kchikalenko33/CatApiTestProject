@@ -2,11 +2,8 @@ package assertions.catList;
 
 import io.qameta.allure.Step;
 import lombok.experimental.UtilityClass;
-import models.CatCreateResponseDto;
 import models.CatListResponseDto;
 import models.PageableDto;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
