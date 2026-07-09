@@ -30,6 +30,16 @@ public class CatListPaginationAssertions {
         assertTrue(response.getFirst(), "Поле first должно быть true");
     }
 
+    @Step("Ответ должен содержать первую страницу")
+    public static void assertIsNotFirstPage(CatListResponseDto response) {
+        assertFalse(response.getFirst(), "Поле first должно быть false");
+    }
+
+    @Step("Ответ должен содержать первую страницу")
+    public static void assertIsLastPage(CatListResponseDto response) {
+        assertTrue(response.getLast(), "Поле last должно быть true");
+    }
+
     @Step("Пагинация должна быть включена")
     public static void assertIsPaged(PageableDto pageable) {
         assertTrue(pageable.getPaged(), "Поле paged должно быть true");
@@ -49,5 +59,10 @@ public class CatListPaginationAssertions {
     public static void assertPageNumberEquals(PageableDto pageable, int expectedPageNumber) {
         assertEquals(expectedPageNumber, pageable.getPageNumber(),
                 "Номер страницы должен совпадать с ожидаемым");
+    }
+
+    public static void checkTotalPagesNotEmpty(CatListResponseDto actual) {
+        assertTrue(actual.getTotalPages() > 0,
+                "Общее количество страниц должно быть больше 0");
     }
 }

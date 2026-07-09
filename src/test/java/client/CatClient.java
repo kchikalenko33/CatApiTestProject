@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.given;
 
 public class CatClient {
 
-   private final RequestSpecification rq = BaseSpec.baseSpecReq();
+    private final RequestSpecification rq = BaseSpec.baseSpecReq();
 
     public Response getCatList() {
         return given()
@@ -25,7 +25,7 @@ public class CatClient {
     public Response getCatListBySize(String size) {
         return given()
                 .spec(rq)
-                .queryParam(size)
+                .queryParam("size", size)
                 .when()
                 .get(CatEndpoint.GET_ALL_CATS.getPath());
     }
@@ -41,10 +41,11 @@ public class CatClient {
     public Response getCatListByPage(String page) {
         return given()
                 .spec(rq)
-                .queryParam(page)
+                .queryParam("page", page)
                 .when()
                 .get(CatEndpoint.GET_ALL_CATS.getPath());
     }
+
     public Response getCatList(String size, String sort, String page) {
         return given()
                 .spec(rq)
@@ -63,7 +64,7 @@ public class CatClient {
                 .post(CatEndpoint.CREATE_CAT.getPath());
     }
 
-    public Response getCatByRow (String id) {
+    public Response getCatByRow(String id) {
         return given()
                 .spec(rq)
                 .pathParam("id", id)

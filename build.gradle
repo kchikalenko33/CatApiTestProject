@@ -43,8 +43,18 @@ dependencies {
 
     // Allure
     testImplementation 'io.qameta.allure:allure-junit5:2.29.1'
+
+    //DB testing
+    testImplementation 'org.postgresql:postgresql:42.7.3'
+    testImplementation 'com.zaxxer:HikariCP:5.1.0'
+    testImplementation 'com.h2database:h2:2.2.224'
 }
 
 test {
     useJUnitPlatform()
+    maxHeapSize = "2048m"
+
+    environment "DB_URL", "jdbc:h2:file:C:/Users/chika/Documents/data/cats-db;AUTO_SERVER=TRUE"
+    environment "DB_USER", "user"
+    environment "DB_PASSWORD", "1234"
 }
