@@ -92,4 +92,13 @@ public class CrudCatStep {
         getCatListBySize(totalSize).as(CatListResponseDto.class).getContent().forEach(i -> ids.add(i.getId()));
         return ids;
     }
+
+    public void clearCatList() {
+        if (!getCatIds().isEmpty()) {
+            catClient.deleteCats(getCatIds())
+                    .then()
+                    .log().all()
+                    .contentType(ContentType.JSON);
+        }
+    }
 }
